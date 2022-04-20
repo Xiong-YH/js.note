@@ -65,3 +65,40 @@
 
 ## 5.改变元素节点中的内容
 
+- innerHTML属性以HTML语法设置节点中的内容
+- innerText属性以纯文本的形式设置节点内容
+
+## 6.改变元素节点CSS样式
+
+```javascript
+box.style.backgroundColor = 'red';
+box.style.backgroundImage = 'url(images/1.jpg)';//最末尾驼峰式命名法
+```
+
+
+
+## 7.节点的创建
+
+1. document.createElement( )用于创建指定tagname的HTML元素
+
+```javascript
+var box = document.createElement('div')
+```
+
+新创建的节点是孤儿节点，并没有被挂载到dom树上，看不见
+
+2.必须使用appendChild( )或insertBefore()方法插入至DOM树
+
+- appendChild().任何在dom树上的节点都可以调用，将孤儿节点挂载在内部，成为最后一个子节点
+
+```javascript
+父节点.appendChild(孤儿节点)
+```
+
+- insertBefore().任何在dom树上的节点都可以调用，将孤儿节点挂载在内部，成为标杆节点之前的节点
+
+```
+父节点.insertBefore(孤儿节点，标杆节点)
+```
+
+## 8.移动节点
