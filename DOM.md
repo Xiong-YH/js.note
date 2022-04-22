@@ -102,3 +102,10 @@ var box = document.createElement('div')
 ```
 
 ## 8.移动节点
+
+- 将已挂载到DOM树上的节点必须使用appendChild( )或insertBefore()方法移动
+
+```
+新父亲节点.appendChild(已经有父亲的节点)；
+```
+
