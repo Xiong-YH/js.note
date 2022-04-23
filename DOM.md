@@ -97,8 +97,8 @@ var box = document.createElement('div')
 
 - insertBefore().任何在dom树上的节点都可以调用，将孤儿节点挂载在内部，成为标杆节点之前的节点
 
-```
-父节点.insertBefore(孤儿节点，标杆节点)
+```javascript
+父节点.insertBefore(孤儿节点，标杆节点)；
 ```
 
 ## 8.移动节点
