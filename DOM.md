@@ -109,3 +109,4 @@ var box = document.createElement('div')
 新父亲节点.appendChild(已经有父亲的节点)；
 ```
 
+## 9.删除节点
