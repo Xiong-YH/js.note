@@ -110,3 +110,24 @@ var box = document.createElement('div')
 ```
 
 ## 9.删除节点
+
+- removeChild()方法从DOM中删除一个子节点
+
+```
+父节点.removeChild(要删除的子节点)
+```
+
+- 节点不能主动删除自己，必须由父节点删除
+
+## 10.克隆节点
+
+- cloneNode()方法可以克隆节点，克隆出的节点是孤儿节点
+
+```
+var 孤儿节点 = 老节点.cloneNode();
+var 孤儿节点 = 老节点.cloneNode(true);
+```
+
+- 参数是一个布尔值，表示是否采用深度克隆，如果为true，则该节点的所有后代节点也都会被克隆，如果为flase，则只克隆该节点本身
+
+  
