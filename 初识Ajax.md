@@ -79,7 +79,7 @@ xhr.send(null)//使用GET方法时填入，可以不填，防止不兼容才填n
 ## 3.使用Ajax完成前后端通信
 
 ```javascript
-const url = https://www.imooc.com/
+const url = 'https://www.imooc.com/api/http/search/suggest?word=js
 const xhr = new XMLHttpRequest();
 //开始监听
 xhr.onreadystatechange = ()=>{
@@ -93,4 +93,41 @@ xhr.open('GET',url,true);
 //发送请求
 xhr.send(null);
 ```
+
+# 3.GET请求
+
+## 1.携带数据
+
+GET请求不能通过请求体携带数据，但是可以通过请求头携带数据
+
+```javascript
+xhr.send('sex=male')
+//不会报错，但是不会发送数据
+```
+
+## 2.数据编码
+
+如果携带数据是非英文字母，比如汉字，就需要编码再发送给后端，不然会出现乱码问题
+
+可以使用encodeURIComponet( )编码
+
+```javascript
+const url = `https://www.imooc.com/api/http/search/suggest?word=${encodeURIComponet('前端')}`
+```
+
+# 4.POST请求
+
+## 1.携带数据
+
+POST请求主要通过请求体携带数据，同时也可以通过请求头携带数据
+
+```javascript
+xhr.open('POST',url,true);
+//如果想发送数据，直接写在send()参数位置，一般是字符串
+xhr.send('sex=male');
+```
+
+## 2.数据编码
+
+encodeURIComponet( )编码的使用和GET一致
 
