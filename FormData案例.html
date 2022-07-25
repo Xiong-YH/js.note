@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="https://www.imooc.com/api/http/search/suggest?word=js" id="login" method="post"
+        enctype="application/x-www-form-urlencoded">
+        <input type="text" name="username" placeholder="用户名">
+        <input type="password" name="password" placeholder="密码">
+        <input id="submit" type="submit" value="登录">
+    </form>
+
+    <script>
+        const login = document.getElementById('login');
+        const btn = document.getElementById('submit');
+        const url = 'https://www.imooc.com/api/http/search/suggest?word=js';
+        const {username,password} = login;
+        btn.addEventListener('click', e => {
+            //阻止表单自动提交
+            e.preventDefault();
+            //表单数据验证
+
+            //发送Ajax请求
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                    console.log(xhr.response);
+                }
+            }, false);
+            xhr.open('post',url,true);
+            //组装数据
+            // const data = `usernanme=${username.value}&password=${password.value}`;
+            // FormData可用于发送表单数据
+            const data = new FormData(login);
+            // console.log(data);
+            //可以使用for..of进行遍历
+            for(const item of data) {
+                console.log(item)
+            }
+
+            // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+            xhr.send(data);
+        }, false);
+
+    </script>
+</body>
+
+</html>
