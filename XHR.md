@@ -63,5 +63,115 @@ IE6~9不支持，IE10开始支持
 
 设置请求头信息
 
+请求头中的Content-Type字段用来告诉服务器，浏览器发送的数据是什么格式的
 
+```javascript
+xhr.open('POST',url,true);
+xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+xhr.send('username=alex');
 
+xhr.setRequestHeader('Content-Type','application/json');
+xhr.send(
+    JSON.stringify({
+        username:'alex'
+    })
+);
+```
+
+# 3.XHR的事件
+
+## 1.load事件
+
+响应数据可用时触发
+
+```javascript
+const url = 'https://www.imooc.com/api/http/search/suggest?word=js'
+const xhr = new XMLHttpRequest();
+//开始监听
+//xhr.onload = ()=>{
+    //if(xhr.readyState !== 4) return;可以删除
+    //if((xhr.status >=200 && xhr.status<300)||xhr.status === 304) {
+       // console.log(xhr.response);
+   // }
+//};
+//可配合addEventListener一起使用
+xhr.addEventListener('load',()=>{
+    if((xhr.status >=200 && xhr.status<300)||xhr.status === 304) {
+        console.log(xhr.response);
+    }
+},false)
+//准备发送请求
+xhr.open('GET',url,true);
+//发送请求
+xhr.send(null);
+//浏览器支持时，最好用这个
+```
+
+IE6~8不支持load事件
+
+## 2.error事件
+
+请求发生错误时触发
+
+```javascript
+const url = 'https://www.iimooc.com/api/http/search/suggest?word=js'//网址有问题
+const xhr = new XMLHttpRequest();
+xhr.addEventListener('load',()=>{
+    if((xhr.status >=200 && xhr.status<300)||xhr.status === 304) {
+        console.log(xhr.response);
+    }
+},false)；
+xhr.addEventListener('error',()=>{
+    console.log('error')
+},false)//弹出error
+xhr.open('GET',url,true);
+//发送请求
+xhr.send(null);
+```
+
+IE10开始支持
+
+## 3.abort事件
+
+调用abort()终止请求时触发
+
+```javascript
+const url = 'https://www.imooc.com/api/http/search/suggest?word=js'
+const xhr = new XMLHttpRequest();
+xhr.addEventListener('load',()=>{
+    if((xhr.status >=200 && xhr.status<300)||xhr.status === 304) {
+        console.log(xhr.response);
+    }
+},false)；
+xhr.addEventListener('abort',()=>{
+    console.log('abort')
+},false)//弹出error
+xhr.open('GET',url,true);
+//发送请求
+xhr.send(null);
+xhr.abort();
+```
+
+IE10开始支持
+
+## 4.timeout事件
+
+```javascript
+const url = 'https://www.imooc.com/api/http/search/suggest?word=js'
+const xhr = new XMLHttpRequest();
+xhr.addEventListener('load',()=>{
+    if((xhr.status >=200 && xhr.status<300)||xhr.status === 304) {
+        console.log(xhr.response);
+    }
+},false)；
+xhr.addEventListener('timeout',()=>{
+    console.log('timeout')
+},false)//弹出error
+xhr.open('GET',url,true);
+xhr.timeout=10;
+//发送请求
+xhr.send(null);
+
+```
+
+IE8开始支持
