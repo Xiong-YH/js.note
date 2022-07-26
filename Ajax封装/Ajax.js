@@ -1,3 +1,7 @@
+
+//工具函数
+import {serialize,addURLData} from './utill';
+//默认参数
 import DEFAULTS from './defaults.js';
 
 
@@ -19,6 +23,14 @@ class Ajax{
         this.bindEvent();
 
         xhr.open(this.options.method,tihs.url+this.addparam(),true);
+
+
+        //设置responseType
+        tihs.addresponseType();
+
+
+        //设置跨域是否携带cookie
+        this.setcooike();
 
         xhr.send()
     };
@@ -65,7 +77,19 @@ class Ajax{
 
         if(!params) return '';
         
-    }
+        return addURLData (this.url,serialize(params));
+    };
+
+    addresponseType(){
+        this.xhr.responseType = this.options.responseType;
+
+    };
+
+    setcooike() {
+        this.xhr.withCredentials = true;
+    };
+
+
 
 }
 
