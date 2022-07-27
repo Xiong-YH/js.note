@@ -1,6 +1,9 @@
+import { HTTP_GET,CONTENT_TYPE_FORM } from "./constents"
+
+
 //默认参数
 const DEFAULTS = {
-    method:'get',
+    method:HTTP_GET,
     //请求头携带数据
     params:null,
     //有参数情况
@@ -11,7 +14,7 @@ const DEFAULTS = {
     //请求体携带数据
     data:null,
     //data:formdata数据
-    contentType:'application/x-www-form-urlencoded',
+    contentType:CONTENT_TYPE_FORM,
     responseType:'text',
     timeoutTime:0,
     withCredentials:false,

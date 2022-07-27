@@ -10,6 +10,10 @@ const serialize = param => {
     return result.join('&');
 };
 
+//数据转换成JSON格式字符串
+const serializeJSON = param => {
+    return JSON.stringify(param);
+}
 
 //给URL添加参数
 
@@ -25,4 +29,4 @@ const addURLData = (url,data) => {
 }
 
 
-export {serialize,addURLData};
+export {serialize,addURLData,serializeJSON};
