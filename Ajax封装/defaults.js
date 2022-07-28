@@ -1,4 +1,4 @@
-import { HTTP_GET,CONTENT_TYPE_FORM } from "./constents"
+import { HTTP_GET,CONTENT_TYPE_FORM } from "./constents.js"
 
 
 //默认参数
@@ -15,7 +15,7 @@ const DEFAULTS = {
     data:null,
     //data:formdata数据
     contentType:CONTENT_TYPE_FORM,
-    responseType:'text',
+    responseType:'',
     timeoutTime:0,
     withCredentials:false,
 
@@ -25,4 +25,6 @@ const DEFAULTS = {
     error(){},
     abort(){},
     timeout(){},
-}
+};
+
+export default DEFAULTS;

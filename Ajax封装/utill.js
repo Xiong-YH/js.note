@@ -3,7 +3,7 @@ const serialize = param => {
     //对象变为字符串 == 对象->数组->字符串
     const result = [];
 
-    for (const [key, value] of Object.entries.param) {
+    for (const [key, value] of Object.entries(param)) {
         result.push(`${encodeURIComponent(key)} = ${encodeURIComponent(value)}`)
     };
 

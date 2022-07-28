@@ -9,16 +9,12 @@
 <body>
     <script type="module">
 
-
-
-
-
         import {ajax,get,getJSON,post} from './index.js';
 
         const url = 'https://www.imooc.com/api/http/search/suggest?word=js';
 
         const xhr = ajax(url,{
-            method:'post',
+            method:'GET',
             params:{username:'alex'},
             data:{
                 age:18,
@@ -28,8 +24,27 @@
 
             success(response) {
                 console.log(response)
-            }
+            },
+
+            httpCodeError(err){
+                console.log('http code error',err);
+            },
+
+            error(xhr){
+                console.log('error',xhr);
+
+            },
+
+            abort(xhr){
+                console.log('abort',xhr);
+
+            },
+
+            timeout(xhr){
+                console.log('timeout',xhr)
+            },
         });
+
     </script>
 </body>
 </html>

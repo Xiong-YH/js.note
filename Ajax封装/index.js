@@ -1,20 +1,20 @@
-import Ajax from "./Ajax";
+import Ajax from "./Ajax.js";
 
 const ajax = (url, options) => {
     return new Ajax(url, options).getXHR();
 };
 
 const get = (url, options) => {
-    return ajax(url, { ...options, method: 'get' });
+    return ajax(url, { ...options, method: 'GET' });
 };
 
 const getJSON = (url, options) => {
-    return ajax(url, { ...options, method: 'get', responseType: 'json' });
+    return ajax(url, { ...options, method: 'GET', responseType: 'json' });
 };
 
 
 const post = (url, options) => {
-    return ajax(url, { ...options, method: 'post' })
+    return ajax(url, { ...options, method: 'POST' })
 };
 
 

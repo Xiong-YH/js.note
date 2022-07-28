@@ -1,10 +1,8 @@
-
-
 //常量
-import { HTTP_GET ,CONTENT_TYPE_FORM,CONTENT_TYPE_JSON} from './constents';
+import { HTTP_GET ,CONTENT_TYPE_FORM,CONTENT_TYPE_JSON} from './constents.js';
 
 //工具函数
-import {serialize,addURLData,serializeJSON} from './utill';
+import {serialize,addURLData,serializeJSON} from './utill.js';
 //默认参数
 import DEFAULTS from './defaults.js';
 
@@ -26,11 +24,11 @@ class Ajax{
         this.xhr = xhr;
         this.bindEvent();
 
-        xhr.open(this.options.method,tihs.url+this.addparam(),true);
+        xhr.open(this.options.method,this.url+this.addparam(),true);
 
 
         //设置responseType
-        tihs.addresponseType();
+        this.addresponseType();
 
         //设置跨域是否携带cookie
         this.setcooike();
@@ -39,7 +37,7 @@ class Ajax{
         this.setTimeout();
 
         //发送请求
-        xhr.setData();
+        this.setData();
     };
     //绑定响应事件处理程序
     bindEvent(){
@@ -49,25 +47,25 @@ class Ajax{
         //load事件
         xhr.addEventListener('load',()=>{
             if(this.ok()) {
-                success(this.xhr.response,this.xhr)
+                success(xhr.response,xhr)
             }else{
-                httpCodeError(xhr.status,this.xhr);
+                httpCodeError(xhr.status,xhr);
             }
         },false);
 
         //error事件
         xhr.addEventListener('error',()=>{
-           error(this.xhr);
+           error(xhr);
         },false);
 
         //abort事件
         xhr.addEventListener('abort',()=>{
-            abort(this.xhr);
+            abort(xhr);
          },false);
 
          //timeout事件
          xhr.addEventListener('timeout',()=>{
-            timeout(this.xhr);
+            timeout(xhr);
          },false);
 
 
@@ -75,6 +73,7 @@ class Ajax{
     };
     //检测响应的http状态码是否正常
     ok(){
+        const xhr = this.xhr;
         return(xhr.status >=200 && xhr.status<300)||xhr.status === 304;
     };
 
@@ -97,7 +96,7 @@ class Ajax{
 
     // 设置跨域是否携带cooike
     setcooike() {
-        if(this.xhr.withCredentials) {
+        if(this.options.withCredentials) {
         this.xhr.withCredentials = true;
         }
         
@@ -122,6 +121,8 @@ class Ajax{
 
 
         let resultData = null;
+
+        const {data} = this.options;
 
         //判断是不是发送FormData格式数据
         if(this.isFormData()){
@@ -153,7 +154,7 @@ class Ajax{
 
         if(!data) return false;
 
-        if(method.toLowerCase() === HTTP_GET) return false;
+        if(method.toLowerCase() === HTTP_GET.toLowerCase()) return false;
 
         return true;
     }
@@ -165,13 +166,13 @@ class Ajax{
 
     //是否发送'application/x-www-form-urlencoded'的数据
     isFormURLEncodeData(){
-        return this.options.toLowerCase().includes(CONTENT_TYPE_FORM);
+        return this.options.contentType.toLowerCase().includes(CONTENT_TYPE_FORM);
     };
 
 
     //是否发送json格式数据
     isJSONData(){
-        return this.options.toLowerCase().includes(CONTENT_TYPE_JSON);
+        return this.options.contentType.toLowerCase().includes(CONTENT_TYPE_JSON);
     };
 
 
@@ -179,7 +180,7 @@ class Ajax{
     setContentType(contentType = this.options.contentType){
         if(!contentType){
 
-            this.xhr.setRequestHeader('contentType',contentType);
+           return this.xhr.setRequestHeader('contentType',contentType);
         }
     };
 
