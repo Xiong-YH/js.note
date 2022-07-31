@@ -103,5 +103,84 @@ stretch：如果项目未设置高度或设为auto，将占满容器的高度
 
 7.align-content属性
 
-align-content定义多根轴线在交叉轴对齐方式
+align-content定义多根轴线在交叉轴对齐方式，如果项目只有一条轴线，该属性不起作用
+
+flex-start:交叉轴起点对齐
+
+flex-end:交叉轴终点对齐
+
+center:交叉轴的中点对齐
+
+space-between：与交叉轴两端对齐，轴线之间的间隔平均分布
+
+space-around：每根轴线两侧间隔相等，轴线之间的间隔比边框的间距大一倍
+
+stretch：轴线占满整个交叉轴
+
+## 6.项目属性
+
+1.order属性
+
+order定义项目的排列顺序，数值越小，排列越靠前，默认为0
+
+order：number
+
+2.flex-grow属性
+
+flex-grow定义项目的放大比例，默认为0，但如果存在剩余空间，也不放大
+
+如果所有的项目flex-grow属性都为1，则将等分剩余空间
+
+如果一个的项目flex-grow属性为2，其余都为1，则前者占据的剩余空间将比其他项多一倍
+
+如果有的项目有width属性，则将减去width数值再平分
+
+flex-grow：number
+
+3.flex-shrink属性
+
+flex-shrink定义了项目的缩小比例，默认为1，如果空间不足时，项目比例将缩小
+
+如果项目flex-shrink属性都为1，当空间不足时，都将等比例缩小
+
+如果一个项目flex-shrink属性为0，其余为1，空间不足时，前者不缩小，负值对该属性无效
+
+4.flex-basis属性
+
+flex-basis定义了分配多余空间时，项目占据的主轴空间，默认值为auto，即项目本来的大小
+
+flex-basis：length | auto
+
+5.flex属性
+
+flex是flex-grow，flex-shrink，flex-basis的简写，默认值为0 1 auto，后两个属性可选
+
+有两个快捷值：auto（1 1 auto）和none（0 0 auto）
+
+6.align-self属性
+
+align-self允许单个项目与其他项目不一样的对齐方式，可覆盖align-items
+
+默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch
+
+flex-start、flex-end、auto、center、baseline、stretch
+
+## 7.媒体查询
+
+- 媒体查询：@media screen and (min-width:900px){  body{    background-color:red}    }
+- 为什么需要媒体查询：一套样式不可能适应各种大小屏幕，针对不同屏幕大小写样式，让页面在不同屏幕上都能正常显示
+- 媒体类型：all（default） screen、print、speech
+- 媒体查询的逻辑：与（and）、或（，）、非（not）
+- 媒体特征表达式：
+- 策略：
+
+
+
+
+
+
+
+
+
+
 
